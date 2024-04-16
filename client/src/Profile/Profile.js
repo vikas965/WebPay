@@ -24,10 +24,10 @@ function UserProfile() {
     navigate('/editprofile')
   }
 
-  const gototrans = ()=>{
+  const gototrans = () => {
     navigate('/transactions')
   }
-  const gotoaddmoney = ()=>{
+  const gotoaddmoney = () => {
     navigate('/pay')
   }
 
@@ -39,26 +39,26 @@ function UserProfile() {
       const formData = new FormData();
       formData.append('image', file);
 
-      const response = await axios.post('http://localhost:3001/user/upload', formData, {
+      const response = await axios.post('https://webpay-vn68.onrender.com/user/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: token,
         },
       });
-      if(response.status===200){
+      if (response.status === 200) {
         fetchUserData(); // Call fetchUserData to refresh userData with updated image path
 
-      // Show toast notification
-      // toast.success('Image Updated Successfully');
+        // Show toast notification
+        // toast.success('Image Updated Successfully');
 
-      // Optionally, you can clear the selected file after upload
-      setFile(null);
+        // Optionally, you can clear the selected file after upload
+        setFile(null);
         toast('Image Updated Succesfully');
 
       }
       // console.log(response.data.imageUrl);
 
-      
+
     } catch (error) {
       console.error('Error uploading image:', error);
       // setError('Failed to upload image');
@@ -71,7 +71,7 @@ function UserProfile() {
   const fetchUserData = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:3001/user', {
+      const response = await axios.get('https://webpay-vn68.onrender.com/user', {
         headers: {
           Authorization: `${token}`,
         }
@@ -84,7 +84,7 @@ function UserProfile() {
 
   useEffect(() => {
     // Fetch user data from the backend
-    
+
 
     fetchUserData();
   }, []);
@@ -96,28 +96,28 @@ function UserProfile() {
       <div className="profile-sections">
         <div className="profile1">
           <div className="user-profile">
-          {userData.imagepath?<img src={`http://localhost:3001/${userData.imagepath}`} alt="Profile" style={{ width: '200px', height: '200px' }} />:<img  style={{ width: '200px', height: '200px' }}src={profile} alt="" /> }  
-         
-          <p>{firstName} </p>
-          <i onClick={handleCustomButtonClick}  class="fa-solid fa-camera"></i>
-          <input
-        id="fileInput"
-        type="file"
-        style={{ display: 'none' }}
-        onChange={handleFileChange}
-      />
+            {userData.imagepath ? <img src={`https://webpay-vn68.onrender.com/${userData.imagepath}`} alt="Profile" style={{ width: '200px', height: '200px' }} /> : <img style={{ width: '200px', height: '200px' }} src={profile} alt="" />}
+
+            <p>{firstName} </p>
+            <i onClick={handleCustomButtonClick} class="fa-solid fa-camera"></i>
+            <input
+              id="fileInput"
+              type="file"
+              style={{ display: 'none' }}
+              onChange={handleFileChange}
+            />
           </div>
 
         </div>
         <div className="profile2">
-        {/* <ImageUpload /> */}
-        <div className="buttons">
-          <button className='btn-bounce' onClick={handleSubmit}>Update Profile</button>
-          <button onClick={ navigatetoeditprofile} className='btn-bounce'>Edit Profile</button>
-          <button onClick={gotoaddmoney} className='btn-bounce'>Payment</button>
-          <button onClick={gototrans} className='btn-bounce'>Transactions</button>
-          <button className='btn-bounce' onClick={navigateto}>Check Balance</button>
-        </div>
+          {/* <ImageUpload /> */}
+          <div className="buttons">
+            <button className='btn-bounce' onClick={handleSubmit}>Update Profile</button>
+            <button onClick={navigatetoeditprofile} className='btn-bounce'>Edit Profile</button>
+            <button onClick={gotoaddmoney} className='btn-bounce'>Payment</button>
+            <button onClick={gototrans} className='btn-bounce'>Transactions</button>
+            <button className='btn-bounce' onClick={navigateto}>Check Balance</button>
+          </div>
         </div>
       </div>
 
@@ -126,8 +126,8 @@ function UserProfile() {
         <ImageUpload />
         <h1>User Profile</h1>
         <div>
-          <img src={`http://localhost:3001/${userData.imagepath}`} alt="Profile" style={{ width: '200px', height: '200px' }} />
-          
+          <img src={`https://webpay-vn68.onrender.com/${userData.imagepath}`} alt="Profile" style={{ width: '200px', height: '200px' }} />
+
         </div>
         <p>Name: {userData.name}</p>
         <p>Email: {userData.email}</p>

@@ -16,14 +16,14 @@ const Transactions = () => {
     const [users, setUsers] = useState({});
     const [loggedInUserId, setLoggedInUserId] = useState(null);
     // const navigate = useNavigate();
-    
+
     useEffect(() => {
         const fetchUserData = async () => {
             try {
                 const token = localStorage.getItem('token');
 
                 // Fetch logged-in user data to get the user's _id (assuming it's in MongoDB ObjectId format)
-                const userResponse = await axios.get('http://localhost:3001/user', {
+                const userResponse = await axios.get('https://webpay-vn68.onrender.com/user', {
                     headers: {
                         Authorization: `${token}`,
                     },
@@ -32,7 +32,7 @@ const Transactions = () => {
                 setLoggedInUserId(loggedInUser._id); // Set the logged-in user's _id
 
                 // Fetch transactions
-                const transactionsResponse = await axios.get('http://localhost:3001/transactions', {
+                const transactionsResponse = await axios.get('https://webpay-vn68.onrender.com/transactions', {
                     headers: {
                         Authorization: `${token}`,
                     },
@@ -48,7 +48,7 @@ const Transactions = () => {
                 ];
 
                 // Fetch user details based on user IDs
-                const userPromises = userIds.map(userId => axios.get(`http://localhost:3001/users/${userId}`, {
+                const userPromises = userIds.map(userId => axios.get(`https://webpay-vn68.onrender.com/users/${userId}`, {
                     headers: {
                         Authorization: `${token}`,
                     },
@@ -117,34 +117,34 @@ const Transactions = () => {
                     </div>
                 </div>
             `;
-    
+
             // Append the container to the document body
             document.body.appendChild(receiptContainer);
-    
+
             // Use html2canvas to capture the rendered receipt content with improved quality
             const canvas = await html2canvas(receiptContainer, {
                 scale: 2, // Increase scale for better resolution
                 useCORS: true, // Enable cross-origin resource sharing (if required)
             });
-    
-            
+
+
             document.body.removeChild(receiptContainer);
             const imgData = canvas.toDataURL('image/png');
 
             // Downlaod as PNG
-        //     const downloadLink = document.createElement('a');
-        // downloadLink.href = imgData;
-        // downloadLink.download = 'transaction_receipt.png';
-        // downloadLink.click();
-            
+            //     const downloadLink = document.createElement('a');
+            // downloadLink.href = imgData;
+            // downloadLink.download = 'transaction_receipt.png';
+            // downloadLink.click();
+
 
 
             // Download as Pdf
             const pdf = new jsPDF('p', 'mm', 'a4');
-            const imgWidth = 180; 
+            const imgWidth = 180;
             const imgHeight = (canvas.height * imgWidth) / canvas.width;
             const x = (pdf.internal.pageSize.width - imgWidth) / 2;
-            const y = (pdf.internal.pageSize.height - imgHeight) / 2;    
+            const y = (pdf.internal.pageSize.height - imgHeight) / 2;
             pdf.addImage(imgData, 'PNG', x, y, imgWidth, imgHeight);
             pdf.save('transaction-receipt.pdf');
         } catch (error) {
@@ -184,26 +184,26 @@ const Transactions = () => {
                     </div>
                 </div>
             `;
-    
+
             // Append the container to the document body
             document.body.appendChild(receiptContainer);
-    
+
             // Use html2canvas to capture the rendered receipt content with improved quality
             const canvas = await html2canvas(receiptContainer, {
                 scale: 2, // Increase scale for better resolution
                 useCORS: true, // Enable cross-origin resource sharing (if required)
             });
-    
-            
+
+
             document.body.removeChild(receiptContainer);
             const imgData = canvas.toDataURL('image/png');
 
             // Downlaod as PNG
             const downloadLink = document.createElement('a');
-        downloadLink.href = imgData;
-        downloadLink.download = 'transaction_receipt.png';
-        downloadLink.click();
-            
+            downloadLink.href = imgData;
+            downloadLink.download = 'transaction_receipt.png';
+            downloadLink.click();
+
 
 
             // Download as Pdf
@@ -234,38 +234,38 @@ const Transactions = () => {
                             <h2>TRANSACTIONS</h2>
                         </center>
                         {loading ? (
-                            <h3 style={{textAlign:"center",marginTop:"50px"}}>Loading transactions...</h3>
+                            <h3 style={{ textAlign: "center", marginTop: "50px" }}>Loading transactions...</h3>
                         ) : (
                             <div className="transactions">
                                 {transactions.map((transaction) => (
-                                    <div  className="eachtransaction" key={transaction._id}>
+                                    <div className="eachtransaction" key={transaction._id}>
 
                                         <div className="firstrow">
                                             {transaction.sender === loggedInUserId ?
                                                 <div className='transprofileimage'>
-                                                    
-                                                    {users[transaction.receiver]?.imagepath ? <img src={`http://localhost:3001/${users[transaction.receiver]?.imagepath}`} alt="Profile" /> : <img src={profile} alt="" />}
+
+                                                    {users[transaction.receiver]?.imagepath ? <img src={`https://webpay-vn68.onrender.com/${users[transaction.receiver]?.imagepath}`} alt="Profile" /> : <img src={profile} alt="" />}
                                                 </div>
 
 
                                                 : <div className='transprofileimage'>
                                                     {/* <h5>Credited to {users[transaction.receiver]?.bankname} </h5> */}
-                                                    {users[transaction.sender]?.imagepath ? <img src={`http://localhost:3001/${users[transaction.sender]?.imagepath}`} alt="Profile" /> : <img src={profile} alt="" />}
+                                                    {users[transaction.sender]?.imagepath ? <img src={`https://webpay-vn68.onrender.com/${users[transaction.sender]?.imagepath}`} alt="Profile" /> : <img src={profile} alt="" />}
 
                                                 </div>
 
                                             }
-                                           
-                                                <div style={{display:"flex", columnGap:"25px" ,textTransform:"uppercase"}}>
 
-                                            {transaction.sender === loggedInUserId ? <p className='text'>Paid to <span> {users[transaction.receiver]?.name}</span></p> : <p>Recieved from <span>{users[transaction.sender]?.name}</span></p>}
-                                            <p>₹{transaction.amount}</p></div>
+                                            <div style={{ display: "flex", columnGap: "25px", textTransform: "uppercase" }}>
+
+                                                {transaction.sender === loggedInUserId ? <p className='text'>Paid to <span> {users[transaction.receiver]?.name}</span></p> : <p>Recieved from <span>{users[transaction.sender]?.name}</span></p>}
+                                                <p>₹{transaction.amount}</p></div>
                                         </div>
                                         <div className="secondrow">
                                             <p> {formatDate(transaction.timestamp)}</p>
                                             <button >  <p onClick={() => handleDownloadReceiptpng(transaction)}> <i class="fa-solid fa-file-arrow-down"></i> PNG</p> &nbsp;&nbsp; <p onClick={() => handleDownloadReceipt(transaction)}><i class="fa-solid fa-download"></i> PDF</p></button>
-                                            {transaction.sender === loggedInUserId ?<h5>Debited from {users[transaction.sender]?.bankname} </h5>:<h5>Credited to {users[transaction.receiver]?.bankname} </h5>}
-                                             
+                                            {transaction.sender === loggedInUserId ? <h5>Debited from {users[transaction.sender]?.bankname} </h5> : <h5>Credited to {users[transaction.receiver]?.bankname} </h5>}
+
 
                                         </div>
                                         {/* <div>Paid to <br /> </div> */}

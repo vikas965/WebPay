@@ -5,22 +5,22 @@ const TransactionSuccess = () => {
     const [transaction, setTransaction] = useState(null);
     const [sender, setSender] = useState(null);
     const [receiver, setReceiver] = useState(null);
-    const {transId} = useParams();
+    const { transId } = useParams();
     // console.log(transId);   
     useEffect(() => {
         const fetchTransactionData = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get(`http://localhost:3001/trans/${transId}`,{
+                const response = await axios.get(`https://webpay-vn68.onrender.com/trans/${transId}`, {
                     headers: {
                         Authorization: `${token}`,
                     },
                 });
                 const transactionData = response.data;
                 setTransaction(transactionData);
-// console.log(transactionData);
+                // console.log(transactionData);
                 // Fetch sender details
-                const senderResponse = await axios.get(`http://localhost:3001/users/${transactionData.sender}`,{
+                const senderResponse = await axios.get(`https://webpay-vn68.onrender.com/users/${transactionData.sender}`, {
                     headers: {
                         Authorization: `${token}`,
                     },
@@ -28,7 +28,7 @@ const TransactionSuccess = () => {
                 setSender(senderResponse.data);
 
                 // Fetch receiver details
-                const receiverResponse = await axios.get(`http://localhost:3001/users/${transactionData.receiver}`,{
+                const receiverResponse = await axios.get(`https://webpay-vn68.onrender.com/users/${transactionData.receiver}`, {
                     headers: {
                         Authorization: `${token}`,
                     },
@@ -45,8 +45,8 @@ const TransactionSuccess = () => {
     if (!transaction || !sender || !receiver) {
         return <p>Loading...</p>;
     }
-//   console.log(sender);
-  console.log(receiver)
+    //   console.log(sender);
+    console.log(receiver)
     return (
         <div>
             <h2>Transaction Details</h2>

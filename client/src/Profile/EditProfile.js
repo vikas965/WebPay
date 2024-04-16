@@ -17,7 +17,7 @@ const EditProfile = () => {
     const fetchUserData = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://localhost:3001/user', {
+            const response = await axios.get('https://webpay-vn68.onrender.com/user', {
                 headers: {
                     Authorization: `${token}`,
                 }
@@ -59,7 +59,7 @@ const EditProfile = () => {
 
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.put('http://localhost:3001/user/updatebank', userData, {
+            const response = await axios.put('https://webpay-vn68.onrender.com/user/updatebank', userData, {
                 headers: {
                     Authorization: `${token}`,
                 }
@@ -73,15 +73,15 @@ const EditProfile = () => {
         }
     };
 
-    const navigatereset =()=>{
+    const navigatereset = () => {
         navigate('/resetpass')
     }
-    
+
     const { name, email, bankname, upipin } = userData;
 
     return (
         <div className='editbody'>
-            <h1 style={{marginLeft:"20%"}}>EDIT <span>PROFILE</span></h1>
+            <h1 style={{ marginLeft: "20%" }}>EDIT <span>PROFILE</span></h1>
             <div className="editform">
                 <form onSubmit={handleSubmit}>
                     <div className="dualinputs">
@@ -116,14 +116,14 @@ const EditProfile = () => {
                             value={upipin}
                             onChange={handleInputChange}
                         />
-                        
+
                     </div>
-                   <center> {upiPinError && <span className="error" style={{margin:"10px"}}>{upiPinError}</span>}</center>
+                    <center> {upiPinError && <span className="error" style={{ margin: "10px" }}>{upiPinError}</span>}</center>
                     <div className="dualinputs">
                         <button className='btn-bounce' type="submit">UPDATE</button>
                     </div>
                     <div >
-                        <center><p style={{fontSize:"16px",cursor:"pointer"}} onClick={navigatereset}>Forgot Your Password ? Reset here</p></center>
+                        <center><p style={{ fontSize: "16px", cursor: "pointer" }} onClick={navigatereset}>Forgot Your Password ? Reset here</p></center>
 
                     </div>
                 </form>

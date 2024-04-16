@@ -19,7 +19,7 @@ const Payment = () => {
     const navigate = useNavigate();
     const navigateto = () => {
         navigate('/transactions')
-      }
+    }
     const EnterAmount = (e) => {
         const val = e.target.value;
         if (val > 10000) {
@@ -70,7 +70,7 @@ const Payment = () => {
         const fetchUserDetails = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get(`http://localhost:3001/user/${userId}`, {
+                const response = await axios.get(`https://webpay-vn68.onrender.com/user/${userId}`, {
                     headers: {
                         Authorization: `${token}`,
                     },
@@ -89,7 +89,7 @@ const Payment = () => {
     const fetchUserData = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://localhost:3001/user', {
+            const response = await axios.get('https://webpay-vn68.onrender.com/user', {
                 headers: {
                     Authorization: `${token}`,
                 }
@@ -111,7 +111,7 @@ const Payment = () => {
             try {
                 const token = localStorage.getItem('token');
                 const response = await axios.post(
-                    'http://localhost:3001/user/sendmoney',
+                    'https://webpay-vn68.onrender.com/user/sendmoney',
                     {
                         receiver: userData._id,
                         amount: amount,
@@ -119,13 +119,14 @@ const Payment = () => {
                     {
                         headers: {
                             Authorization: `${token}`,
-                            
+
                         },
                     }
                 );
-                if(response.status===200){
-                toast.success('Payment successful');
-                navigateto();}
+                if (response.status === 200) {
+                    toast.success('Payment successful');
+                    navigateto();
+                }
                 // console.log(response.data);
             }
             catch (error) {
@@ -149,7 +150,7 @@ const Payment = () => {
                                 <header>
 
                                     {userData.imagepath ? (
-                                        <img src={`http://localhost:3001/${userData.imagepath}`} alt="Profile" />
+                                        <img src={`https://webpay-vn68.onrender.com/${userData.imagepath}`} alt="Profile" />
                                     ) : (
                                         <img src={profile} alt="" />
                                     )}
@@ -188,7 +189,7 @@ const Payment = () => {
                                 <header>
                                     <i style={{ fontSize: "20px", cursor: "pointer" }} onClick={setBack} class="fa-solid fa-arrow-left"></i>
                                     {userData.imagepath ? (
-                                        <img src={`http://localhost:3001/${userData.imagepath}`} alt="Profile" />
+                                        <img src={`https://webpay-vn68.onrender.com/${userData.imagepath}`} alt="Profile" />
                                     ) : (
                                         <img src={profile} alt="" />
                                     )}

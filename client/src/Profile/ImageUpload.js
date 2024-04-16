@@ -18,7 +18,7 @@ function ImageUpload() {
       const formData = new FormData();
       formData.append('image', file);
 
-      const response = await axios.post('http://localhost:3001/user/upload', formData, {
+      const response = await axios.post('https://webpay-vn68.onrender.com/user/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: token,
@@ -38,13 +38,13 @@ function ImageUpload() {
       {error && <p>{error}</p>}
       <form onSubmit={handleSubmit}>
         <input type="file" onChange={handleFileChange} />
-        <button style={{width:"100px"}} type="submit">Upload</button>
+        <button style={{ width: "100px" }} type="submit">Upload</button>
       </form>
       {imageUrl && (
         <div>
           {/* <h3>Uploaded Image URL:</h3> */}
           {/* <p>{imageUrl}</p> */}
-          
+
         </div>
       )}
     </div>

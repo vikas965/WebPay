@@ -18,7 +18,7 @@ const Password = () => {
     const fetchUserData = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://localhost:3001/user', {
+            const response = await axios.get('https://webpay-vn68.onrender.com/user', {
                 headers: {
                     Authorization: `${token}`,
                 }
@@ -114,7 +114,7 @@ const Password = () => {
 
                             <h1>BALANCE : ₹{accountbalance}</h1>
                             <p>{bankname}</p>
-                            <button style={{marginTop:"10px"}} onClick={() => navigate('/home')}>Go Back</button>
+                            <button style={{ marginTop: "10px" }} onClick={() => navigate('/home')}>Go Back</button>
                         </center>
                     </div>
                 )}

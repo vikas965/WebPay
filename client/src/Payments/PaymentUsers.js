@@ -21,7 +21,7 @@ const PaymentUsers = () => {
     const fetchUserData = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:3001/users', {
+        const response = await axios.get('https://webpay-vn68.onrender.com/users', {
           headers: {
             Authorization: `${token}`,
           },
@@ -64,7 +64,7 @@ const PaymentUsers = () => {
       <Modal isOpen={!!selectedUser} onClose={handleClose}>
         {selectedUser && (
           <>
-            <img style={{ width: "125px", height: "125px", borderRadius: "100%", filter: "drop-shadow(2.5px 2.5px 5px #0ebeff)" }} src={selectedUser.imagepath ? `http://localhost:3001/${selectedUser.imagepath}` : profile} alt="Profile" />
+            <img style={{ width: "125px", height: "125px", borderRadius: "100%", filter: "drop-shadow(2.5px 2.5px 5px #0ebeff)" }} src={selectedUser.imagepath ? `https://webpay-vn68.onrender.com/${selectedUser.imagepath}` : profile} alt="Profile" />
             <br />
             <h1 style={{ textTransform: "uppercase" }}>{selectedUser.name}</h1>
             <p>{selectedUser.mobilenumber}</p>
@@ -92,7 +92,7 @@ const PaymentUsers = () => {
               {filteredUsers.map((user) => (
                 <div className="eachuser" key={user._id}>
                   {user.imagepath ? (
-                    <img src={`http://localhost:3001/${user.imagepath}`} alt="Profile" />
+                    <img src={`https://webpay-vn68.onrender.com/${user.imagepath}`} alt="Profile" />
                   ) : (
                     <img src={profile} alt="" />
                   )}

@@ -8,19 +8,19 @@ import 'react-toastify/dist/ReactToastify.css';
 const ChangePassword = () => {
     const [inputs, setInputs] = useState(Array(6).fill(''));
     const inputRefs = useRef([]);
-    
+
     const [step, setStep] = useState(1); // Step 1: Initial, Step 2: OTP verification
     const [email, setEmail] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-   
+
 
     const navigate = useNavigate();
 
-    const sendtohome = ()=>{
+    const sendtohome = () => {
         navigate('/home')
-}
+    }
 
     useEffect(() => {
         inputRefs.current[0]?.focus();
@@ -49,7 +49,7 @@ const ChangePassword = () => {
 
     const handleResetRequest = async () => {
         try {
-            const response = await axios.get(`http://localhost:3001/sendotp/${email}`)
+            const response = await axios.get(`https://webpay-vn68.onrender.com/sendotp/${email}`)
             if (response.status === 200) {
                 toast.success('Reset email sent. Please check your inbox.');
                 setStep(2); // Move to step 2 (OTP verification)
@@ -63,7 +63,7 @@ const ChangePassword = () => {
     const handleVerifyOTP = async () => {
         const otp = inputs.join('');
         try {
-            const response = await axios.post('http://localhost:3001/verifyotp', { email, otp, password: newPassword });
+            const response = await axios.post('https://webpay-vn68.onrender.com/verifyotp', { email, otp, password: newPassword });
             if (response.status === 200) {
                 toast.success('OTP verified. Password updated successfully.');
                 // Clear inputs and navigate to another page after success
@@ -76,7 +76,7 @@ const ChangePassword = () => {
         }
     };
 
-    
+
 
     return (
         <div className="containerpass">
@@ -120,7 +120,7 @@ const ChangePassword = () => {
                                 placeholder='Confirm Password'
                             />
                             <br />
-                            <p id="special" style={{marginTop:"12px"}}>Enter the OTP sent to your email:</p>
+                            <p id="special" style={{ marginTop: "12px" }}>Enter the OTP sent to your email:</p>
                             <div className="inputs">
                                 {inputs.map((value, index) => (
                                     <input
@@ -143,7 +143,7 @@ const ChangePassword = () => {
                                 >
                                     Verify OTP
                                 </button>
-                                
+
                             </div>
                         </form>
                     </div>

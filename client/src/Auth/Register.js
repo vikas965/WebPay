@@ -31,7 +31,7 @@ const Register = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:3001/register', {
+      const response = await axios.post('https://webpay-vn68.onrender.com/register', {
         name,
         email,
         mobilenumber: number,
@@ -43,7 +43,7 @@ const Register = () => {
       console.log(response.data);
       toast.success('Registration successful!');
       navigateto();
-     
+
     } catch (error) {
       console.error('Registration failed:', error);
       if (error.response && error.response.data && error.response.data.error) {
