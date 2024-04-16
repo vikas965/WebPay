@@ -1,0 +1,111 @@
+
+body{
+  /* height: 100vh; */
+  width: 100%;
+  box-sizing: border-box;
+  /* background-image: linear-gradient(to right, #ffffff 0%, #eef1f5 100%); */
+}
+.App {
+  
+  width: 100%;
+ 
+}
+
+.maincontent{
+  width: 100%;
+  /* height:100vh; */
+}
+
+.btn{
+  padding: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+  cursor: pointer;
+  border: none;
+  border-radius: 7px;
+  background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  color: rgb(13, 13, 70);
+  font-size: 17px;
+  margin-top: 8px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.topcontent{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+
+}
+
+.topcontent  h1{
+  font-size: 55px;
+  font-weight: 600;
+  color: rgb(9, 36, 95);
+  margin: 3px;
+}
+
+
+
+.content p{
+  font-size: 30px;
+  color: rgb(8, 18, 72);
+  margin: 3px;
+}
+
+.topcontent img{
+  width: 350px;
+  height: 300px;
+  
+}
+
+.btn:active{
+  animation: bounce 0.3s;
+}
+
+@keyframes bounce {
+  0% {
+       transform: scale(1);
+     }
+     25% {
+       transform: scale(0.95);
+     }
+     50% {
+       transform: scale(1.1);
+     }
+     75% {
+       transform: scale(0.98);
+     }
+     100% {
+       transform: scale(1);
+     }
+}
+
+.footer{
+  width: 100%;
+  height: 350px;
+  background: url("assets/wave1.png");
+  background-repeat: no-repeat;
+  background-position:center;
+  background-size: cover;
+  position:fixed;
+  bottom: 0px;
+
+}
+
+@media screen and (max-width: 480px)
+{
+
+  .footer{
+    width: 100%;
+    height: 60%;
+    background: url("assets/wave1.png");
+    background-repeat: no-repeat;
+    background-position:top;
+    background-size: cover;
+    position:fixed;
+    bottom: 0px;
+}
+}

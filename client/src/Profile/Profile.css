@@ -1,0 +1,374 @@
+*,body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.profile-container{
+    width: 100%;
+    height: 100vh;
+    /* background-color: rgb(217, 238, 238); */
+}
+.profile-sections{
+    width: 100%;
+    height: 80vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: url('../assets/profilewave.png');
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+
+}
+
+.profile1 {
+    width: 100%;
+    /* height: 80vh; */
+    padding: 15px;
+    display: flex;
+    align-items: top;
+    justify-content: center;
+}
+
+.profile-sections .profile1 .user-profile{
+    width: 300px;
+    height: 300px;
+    text-align: center;
+    /* border: solid 1px black; */
+}
+
+.profile-sections .profile1 .user-profile img{
+    border-radius: 100%;
+    filter: drop-shadow(2.5px 2.5px 5px #0ebeff);
+}
+.profile-sections .profile1 .user-profile p{
+    text-transform: uppercase;
+    font-size: 40px;
+
+}
+
+.profile-sections .profile2 {
+    width: 90%;
+    display: flex;
+    align-items: top;
+    justify-content: space-between;
+    column-gap: 20px;
+    
+    
+    
+    padding-top: 25px;
+    /* align-items: center; */
+    /* justify-content: space-around; */
+    flex-wrap: wrap;
+}
+
+
+
+
+
+
+.user-profile i{
+    position: relative;
+    left: 100px;
+    bottom: 175px;
+    color: #330867;
+    padding: 5px;
+    border: dotted 2px black;
+    border-radius: 100%;
+    background-color: white;
+    font-size: 18px;
+    cursor: pointer;
+    /* bottom: 40px; */
+}
+.profile-sections .profile2 button{
+    border: none;
+    padding: 20px;
+    border-radius: 8px;
+    /* filter: drop-shadow(2.5px 2.5px 5px #1d1741); */
+    text-transform: uppercase;
+    /* background-color: rgb(7, 7, 22); */
+    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+    color: rgb(245, 244, 248);
+    font-size: 18px;
+    margin: 10px;
+    cursor: pointer;
+    
+}
+
+.editbody{
+    width: 100%;
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(254, 250, 250);
+    background: url('../assets/sidewave.png');
+}
+
+.editform{
+    width: 55%;
+    height: 60%;
+    padding-top: 8px;
+    /* border: solid 1px black; */
+    box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    text-transform: capitalize;
+    color: #330867;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 24px;
+    row-gap: 30px;
+    margin-left: 20%;
+}
+
+.dualinputs{
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.dualinputs input{
+    padding: 25px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border: none;
+    border-radius: 7px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    font-size: 16px;
+    
+
+}
+
+.dualinputs button{
+    border: none;
+    background-color: #330867;
+    color: white;
+    padding: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.contentpass button{
+    border: none;
+    background-color: #330867;
+    color: white;
+    padding: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 7px;
+}
+.contentpass img{
+    width: 250px;
+}
+
+.btn-bounce:active{
+    
+        animation: bounce 0.3s;
+     
+}
+
+
+.addmoney-container{
+    width: 100vw;
+    height: 100vh;
+    padding-left: 4%;
+    padding-right: 5%;
+    background: url('../assets/transback.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    /* background-position: center; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+
+}
+
+.image-boy img{
+
+    width: 200px;
+    height:70vh;
+    filter: drop-shadow(2.5px 2.5px 5px #0ebeff);
+}
+
+.addmoney-box{
+    width: 70%;
+    height: 90vh;
+    padding-top: 20px;
+    border-radius: 7px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.bankdetails{
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bankdetails input{
+    width: 80%;
+    padding: 16px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+}
+
+@media screen and (max-width: 480px)
+{
+
+    .profile-sections{
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 40px;
+        background: none;
+        /* background: none; */
+        /* background: url('../assets/profilewave.png'); */
+        
+    
+    }
+    .profile-container{
+        width: 100%;
+        /* height: 100; */
+        background: url('../assets/profilewave.png');
+        background-position:bottom;
+        background-repeat: no-repeat;
+        background-size: cover;
+        /* background: none; */
+        
+        /* background-color: rgb(217, 238, 238); */
+    }
+    .profile-sections .profile2 button{
+        border: none;
+        padding: 13px;
+        width: 90%;
+        border-radius: 8px;
+        /* filter: drop-shadow(2.5px 2.5px 5px #1d1741); */
+        text-transform: uppercase;
+        /* background-color: rgb(7, 7, 22); */
+        background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+        color: rgb(245, 244, 248);
+        font-size: 14px;
+        margin: 10px;
+        cursor: pointer;
+        
+    }
+
+    .profile-sections .profile1 .user-profile{
+        width: 250px;
+        height: 250px;
+        text-align: center;
+        /* border: solid 1px black; */
+    }
+    .profile1 {
+        width: 100%;
+        /* height: 80vh; */
+        padding: 7px;
+        display: flex;
+        align-items: top;
+        justify-content: center;
+    }
+    .profile-sections .profile2 {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        column-gap: 12px;
+        
+        
+        
+        padding-top: 10px;
+       
+        flex-wrap: wrap;
+    }
+
+    .profile-sections .profile2 .buttons{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding-bottom: 50px;
+    }
+    
+
+    .nav-container{
+        display: none;
+    }
+    
+    .dualinputs{
+        width: 100%;
+        padding: 10px;
+        display: flex;
+        row-gap: 15px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .editform{
+        width: 55%;
+        height: 60%;
+        padding-top: 8px;
+        /* border: solid 1px black; */
+        box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.1);
+        border-radius: 6px;
+        text-transform: capitalize;
+        color: #330867;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top:40px;
+        row-gap: 30px;
+        /* margin-left: 20%; */
+        margin-left: 0;
+    }
+
+    .editform p{
+        color: white;
+    }
+
+    .editbody h1{
+        color: white;
+        margin-bottom: 16px;
+        /* margin-left: 12px; */
+    }
+    .editbody h1 span{
+        color:rgb(14, 14, 63) ;
+    }
+    .editbody{
+        width: 100%;
+        height: 100vh;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        background-color: rgb(254, 250, 250);
+        background: url('../assets/sidewave.png');
+        padding-top: 20px;
+        /* background-position: bottom; */
+    }
+
+    .dualinputs input{
+        width: 80vw;
+    }
+}
