@@ -9,7 +9,7 @@
     height: 100vh;
     background:url('../assets/halfback.png');
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -22,7 +22,7 @@
     height: 100vh;
     /* border: solid 1px black; */
     display: grid;
-    grid-template-columns: 23% 77%;
+    grid-template-columns: 30% 70%;
 
 
 }

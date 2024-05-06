@@ -2,8 +2,10 @@
 
 .landing-container{
     width: 100%;
-    height:80vh ;
+    height:calc(100vh - 20vh) ;
+
     background:url('../assets/wave4.png') ;
+    background-size: cover;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start; 
