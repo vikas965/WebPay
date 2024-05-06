@@ -7,7 +7,7 @@ import authRoute from "./authRoute.js";
 import Transdata from "../model/Transactions.js";
 import nodemailer from 'nodemailer';
 import bcrypt from 'bcrypt';
-
+import cloudinary from 'cloudinary';
 const router = express.Router();
 
 
@@ -43,18 +43,45 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.post("/user/upload", authRoute, upload.single('image'), async (req, res) => {
+// router.post("/user/upload", authRoute, upload.single('image'), async (req, res) => {
+//     try {
+//       if (!req.file) {
+//         return res.status(400).json({ message: 'Profile Not Updated' });
+//       }
+  
+//       // Save the image URL in the database
+//       const user_id = req.user._id;
+//       const imagePath = 'Routes/Userimages/' + req.file.filename;
+//       await Userdata.findByIdAndUpdate(user_id, { $set: { imagepath: imagePath } });
+  
+//       res.json({ imageUrl: imagePath });
+//     } catch (error) {
+//       console.error("Error uploading image:", error);
+//       res.status(500).json({ message: "Error uploading image" });
+//     }
+//   });
+
+cloudinary.config({
+    cloud_name: 'dffrcy9y7',
+    api_key: '733245193592217',
+    api_secret: 'qL5clSKapy3dgThOSCy__Iy-JdY'
+  });
+  
+  router.post("/user/upload", authRoute, async (req, res) => {
     try {
       if (!req.file) {
         return res.status(400).json({ message: 'Profile Not Updated' });
       }
   
+      // Upload the image to Cloudinary
+      const result = await cloudinary.uploader.upload(req.file.path);
+  
       // Save the image URL in the database
       const user_id = req.user._id;
-      const imagePath = 'Routes/Userimages/' + req.file.filename;
-      await Userdata.findByIdAndUpdate(user_id, { $set: { imagepath: imagePath } });
+      const imageUrl = result.secure_url;
+      await Userdata.findByIdAndUpdate(user_id, { $set: { imagepath: imageUrl } });
   
-      res.json({ imageUrl: imagePath });
+      res.json({ imageUrl });
     } catch (error) {
       console.error("Error uploading image:", error);
       res.status(500).json({ message: "Error uploading image" });

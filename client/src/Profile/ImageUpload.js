@@ -14,18 +14,13 @@ function ImageUpload() {
     e.preventDefault();
 
     try {
-      const token = localStorage.getItem('token');
       const formData = new FormData();
-      formData.append('image', file);
+      formData.append('file', file);
+      formData.append('upload_preset', 'ho8ievce');
 
-      const response = await axios.post('https://webpay-vn68.onrender.com/user/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: token,
-        },
-      });
+      const response = await axios.post('https://api.cloudinary.com/v1_1/dffrcy9y7/image/upload', formData);
 
-      setImageUrl(response.data.imageUrl);
+      setImageUrl(response.data.secure_url.replace("https://res.cloudinary.com/dffrcy9y7/image/upload/", "https://webpaysample.jpg/"));
     } catch (error) {
       console.error('Error uploading image:', error);
       setError('Failed to upload image');
@@ -42,9 +37,8 @@ function ImageUpload() {
       </form>
       {imageUrl && (
         <div>
-          {/* <h3>Uploaded Image URL:</h3> */}
-          {/* <p>{imageUrl}</p> */}
-
+          <h3>Uploaded Image URL:</h3>
+          <img src={imageUrl} alt="Uploaded" />
         </div>
       )}
     </div>
