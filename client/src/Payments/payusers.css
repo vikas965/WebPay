@@ -314,10 +314,12 @@ font-size: 15px;
         display: flex;
         flex-direction: column;
         background:url('../assets/payback.png') ;
+
         
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
+        background: none;
         
         /* grid-template-columns: 1fr; */
         /* grid-template-rows: 1fr 1fr; */
@@ -351,7 +353,7 @@ font-size: 15px;
         height:35vh;
     }
     .PaymentSection .payusers{
-        height: 61vh;
+        height: 65vh;
     }
     .payment-container .section1,.payment-container .section2{
         width: 90%;
