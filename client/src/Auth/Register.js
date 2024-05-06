@@ -3,7 +3,7 @@ import './register.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -11,10 +11,12 @@ const Register = () => {
   const [number, setNumber] = useState('');
   const [password, setPassword] = useState('');
   const [confirmpass, setConfirmPass] = useState('');
+  const [isLoading, setIsLoading] = useState(false); // State to track loading state
   const navigate = useNavigate();
+
   const navigateto = () => {
-    navigate('/login')
-  }
+    navigate('/login');
+  };
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -31,6 +33,7 @@ const Register = () => {
     }
 
     try {
+      setIsLoading(true); // Set loading state to true
       const response = await axios.post('https://webpay-vn68.onrender.com/register', {
         name,
         email,
@@ -43,7 +46,6 @@ const Register = () => {
       console.log(response.data);
       toast.success('Registration successful!');
       navigateto();
-
     } catch (error) {
       console.error('Registration failed:', error);
       if (error.response && error.response.data && error.response.data.error) {
@@ -51,6 +53,8 @@ const Register = () => {
       } else {
         toast.error('Registration failed. Please try again.');
       }
+    } finally {
+      setIsLoading(false); // Set loading state back to false
     }
   };
 
@@ -94,7 +98,9 @@ const Register = () => {
               value={confirmpass}
               onChange={(e) => setConfirmPass(e.target.value)}
             />
-            <button type="submit">REGISTER</button>
+            <button type="submit" disabled={isLoading}>
+              {isLoading ? 'Please wait...' : 'REGISTER'}
+            </button>
           </div>
         </form>
       </div>
