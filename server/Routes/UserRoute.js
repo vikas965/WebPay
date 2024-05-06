@@ -43,23 +43,23 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// router.post("/user/upload", authRoute, upload.single('image'), async (req, res) => {
-//     try {
-//       if (!req.file) {
-//         return res.status(400).json({ message: 'Profile Not Updated' });
-//       }
+router.post("/user/upload", authRoute, upload.single('image'), async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ message: 'Profile Not Updated' });
+      }
   
-//       // Save the image URL in the database
-//       const user_id = req.user._id;
-//       const imagePath = 'Routes/Userimages/' + req.file.filename;
-//       await Userdata.findByIdAndUpdate(user_id, { $set: { imagepath: imagePath } });
+      // Save the image URL in the database
+      const user_id = req.user._id;
+      const imagePath = 'Routes/Userimages/' + req.file.filename;
+      await Userdata.findByIdAndUpdate(user_id, { $set: { imagepath: imagePath } });
   
-//       res.json({ imageUrl: imagePath });
-//     } catch (error) {
-//       console.error("Error uploading image:", error);
-//       res.status(500).json({ message: "Error uploading image" });
-//     }
-//   });
+      res.json({ imageUrl: imagePath });
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      res.status(500).json({ message: "Error uploading image" });
+    }
+  });
 
 cloudinary.config({
     cloud_name: 'dffrcy9y7',
@@ -67,26 +67,26 @@ cloudinary.config({
     api_secret: 'qL5clSKapy3dgThOSCy__Iy-JdY'
   });
   
-  router.post("/user/upload", authRoute, async (req, res) => {
-    try {
-      if (!req.file) {
-        return res.status(400).json({ message: 'Profile Not Updated' });
-      }
+//   router.post("/user/upload", authRoute, async (req, res) => {
+//     try {
+//       if (!req.file) {
+//         return res.status(400).json({ message: 'Profile Not Updated' });
+//       }
   
-      // Upload the image to Cloudinary
-      const result = await cloudinary.uploader.upload(req.file.path);
+//       // Upload the image to Cloudinary
+//       const result = await cloudinary.uploader.upload(req.file.path);
   
-      // Save the image URL in the database
-      const user_id = req.user._id;
-      const imageUrl = result.secure_url;
-      await Userdata.findByIdAndUpdate(user_id, { $set: { imagepath: imageUrl } });
+//       // Save the image URL in the database
+//       const user_id = req.user._id;
+//       const imageUrl = result.secure_url;
+//       await Userdata.findByIdAndUpdate(user_id, { $set: { imagepath: imageUrl } });
   
-      res.json({ imageUrl });
-    } catch (error) {
-      console.error("Error uploading image:", error);
-      res.status(500).json({ message: "Error uploading image" });
-    }
-  });
+//       res.json({ imageUrl });
+//     } catch (error) {
+//       console.error("Error uploading image:", error);
+//       res.status(500).json({ message: "Error uploading image" });
+//     }
+//   });
 router.get("/users", authRoute, async (req, res) => {
     try {
         const user_id = req.user._id;
