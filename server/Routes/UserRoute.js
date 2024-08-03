@@ -168,7 +168,7 @@ const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: 'mahanthivikas965@gmail.com',
-    pass: 'yohs ygkq adnf puak'
+    pass: 'yvnw xnip hzmy yfgx'
   }
 });
 router.get("/sendotp/:email", async (req, res) => {
